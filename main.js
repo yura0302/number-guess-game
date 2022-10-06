@@ -17,9 +17,13 @@ const playButton = document.getElementById("play-button");
 const UserInput = document.getElementById("user-input");
 const resultArea = document.getElementById("result-area");
 const resetButton = document.getElementById("reset-button");
+const history = [];
 
 playButton.addEventListener("click", play);
 resetButton.addEventListener("click", reset);
+UserInput.addEventListener("focus", function () {
+  UserInput.value = "";
+});
 
 function picRandomNum() {
   computerNum = Math.floor((Math.random() * 100) / 10) + 1;
@@ -28,6 +32,14 @@ function picRandomNum() {
 
 function play() {
   let userValue = UserInput.value;
+  if (userValue < 1 || userValue > 100) {
+    resultArea.textContent = "1과 100사이 숫자를 입력해주세요 !!!";
+    return;
+  }
+  if (history.includes(userValue) == true) {
+    resultArea.textContent = "이미 입력한 숫자입니다 다른 숫자를 입력하세요!!!";
+    return;
+  }
   chances--;
   chanceArea.textContent = `남은기회:${chances}번`;
   console.log("chance", chances);
@@ -38,7 +50,10 @@ function play() {
     resultArea.textContent = "DOWN !!!";
   } else {
     resultArea.textContent = "정답 !!!";
+    gameOver = true;
   }
+  history.push(userValue);
+  console.log(history);
   if (chances < 1) {
     gameOver = true;
   }
@@ -48,21 +63,6 @@ function play() {
   // if (결과값 ==정답){
   //   playButton.disabled=true;
   // }
-  if (UserInput == focus) {
-    UserInput.value = "";
-  }
-}
-
-function reset() {
-  // user input 창이 깨꿋하게 정리되고
-  UserInput.value = "";
-  // 새로운 번호가 생성되고
-  picRandomNum();
-  resultArea.textContent = "결과가 나온다";
 }
 
 picRandomNum();
-
-// if (focus =인풋창 ) {
-// userInput.value=""
-// }
