@@ -9,9 +9,9 @@
 //유저가 이미 입력한 숫자를 또 입력하면 알려준다. 기회를 깎지 않는다.
 
 let computerNum = 0;
-let playButton = document.getElementById("play-button");
-let UserInput = document.getElementById("user-input");
-let resultArea = document.getElementById("result-area");
+const playButton = document.getElementById("play-button");
+const UserInput = document.getElementById("user-input");
+const resultArea = document.getElementById("result-area");
 
 playButton.addEventListener("click", play);
 
@@ -19,6 +19,7 @@ function picRandomNum() {
   computerNum = Math.floor(Math.random() * 100) + 1;
   console.log("정답", computerNum);
 }
+
 function play() {
   let userValue = UserInput.value;
   if (userValue < computerNum) {
@@ -29,4 +30,5 @@ function play() {
     resultArea.textContent = "정답 !!!";
   }
 }
+
 picRandomNum();
