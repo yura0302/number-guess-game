@@ -60,9 +60,6 @@ function play() {
   if (gameOver) {
     playButton.disabled = true;
   }
-  // if (결과값 ==정답){
-  //   playButton.disabled=true;
-  // }
 }
 
 picRandomNum();
