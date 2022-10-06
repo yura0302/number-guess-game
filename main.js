@@ -30,5 +30,3 @@ function play() {
   }
 }
 picRandomNum();
-
-console.log("왜 안올라가아악");
